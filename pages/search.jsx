@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 import Layout from '../components/layouts/Layout';
 
 
-export default function We() {
+export default function popular() {
   return (
     <div className="container">
       <Layout>
-        <h1>About</h1>
+        <h1>Search</h1>
       </Layout>
     </div>
   )
