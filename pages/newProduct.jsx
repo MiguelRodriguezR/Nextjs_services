@@ -9,6 +9,7 @@ import { useState, useContext } from "react";
 import Router, { useRouter } from "next/router";
 import validateCreateProduct from "../validators/validateCreateProduct";
 import FileUploader from "react-firebase-file-uploader";
+import Error404 from "../components/layouts/404";
 
 const INITIAL_STATE = {
   name: "",
@@ -50,8 +51,13 @@ export default function newProduct() {
       urlImage,
       description,
       votes: 0,
+      voters: [],
       coments: [],
       created: Date.now(),
+      creator: {
+        id: user.uid,
+        name: user.displayName
+      }
     };
 
     firebase.db.collection("products").add(product);
@@ -84,6 +90,8 @@ export default function newProduct() {
         setUrlImage(url);
       });
   };
+
+  if(!user) return <Error404></Error404>
 
   return (
     <div className="container">
